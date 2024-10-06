@@ -1,14 +1,24 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  NavigationContainer,
+  createNavigationContainerRef,
+} from '@react-navigation/native';
+import React, {useRef} from 'react';
+import {LogBox} from 'react-native';
+import Route from './routes';
 
-const App = () => {
+LogBox.ignoreAllLogs();
+export const navigateRef = createNavigationContainerRef();
+
+const MainApp = () => {
+  const routeNameRef = useRef();
+
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer ref={navigateRef}>
+      <Route />
+    </NavigationContainer>
   );
 };
 
-export default App;
-
-const styles = StyleSheet.create({});
+export default function App() {
+  return <MainApp />;
+}
